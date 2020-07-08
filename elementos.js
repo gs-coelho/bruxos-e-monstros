@@ -3,7 +3,7 @@ let chao = {
   y: 250,
   width: 600,
   height: 50,
-  desenha() {
+  desenha(ctx) {
     ctx.fillStyle = "#000030";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   },
@@ -16,12 +16,12 @@ let personagem = {
   width: 49,
   height: 48,
 
-  desenha(posX, posY) {
+  desenha(ctx, posX, posY) {
     ctx.drawImage(this.img, posX, posY);
     this.x = posX;
     this.y = posY;
   },
-  apaga() {
+  apaga(ctx) {
     ctx.clearRect(this.x, this.y, this.width, this.height);
     this.x = undefined;
     this.y = undefined;
@@ -35,12 +35,12 @@ let monstro = {
   width: 56,
   height: 72,
 
-  desenha(posX, posY) {
+  desenha(ctx, posX, posY) {
     ctx.drawImage(this.img, posX, posY, this.width, this.height);
     this.x = posX;
     this.y = posY;
   },
-  apaga() {
+  apaga(ctx) {
     ctx.clearRect(this.x, this.y, this.width, this.height);
     this.x = undefined;
     this.y = undefined;
@@ -52,7 +52,7 @@ let feitico = {
   y: 100,
   width: 10,
   height: 30,
-  desenha() {
+  desenha(ctx) {
     ctx.fillStyle = "#daa520";
     ctx.fillRect(
       this.x - this.width / 2,
