@@ -11,12 +11,30 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    overflow: hidden;
+    color: #fefefe;
+    flex-direction: column;
 }
 
 #jogo {
     border: 1px solid #daa520;
-    background-color: #000030;
+    background-color: #555597;
     border-radius: 1em;
     box-shadow: 0px 0px 30px 0px rgba(218,165,32,0.5)
+}
+
+h1, p {
+    font-family: 'Nunito', sans-serif;
+}
+
+.containerTexto {
+    background-color: #daa520;
+    border-radius: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
+    margin: 2em auto;
+}
+
+.containerTexto p, .containerTexto h1 {
+    text-align: center;
 }
