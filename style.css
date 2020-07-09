@@ -38,3 +38,7 @@ h1, p {
 .containerTexto p, .containerTexto h1 {
     text-align: center;
 }
+
+#jogo:hover {
+    cursor: none;
+}
