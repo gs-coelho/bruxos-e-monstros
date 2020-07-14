@@ -1,7 +1,8 @@
-import {LARGURA_JOGO, ALTURA_JOGO} from './jogoConst.js';
+import { LARGURA_JOGO, ALTURA_JOGO } from './jogoConst.js';
 
 let imgMonstro = new Image();
 imgMonstro.src = '../assets/img/dementador.png';
+
 
 class Sprite {
   constructor(ctx, x, y, largura, altura, imagem, cor) {
@@ -55,26 +56,26 @@ class Monstro extends Sprite {
   }
 
   atualizaPosicao() {
-    if(this.y > ALTURA_JOGO){
+    if (this.y > ALTURA_JOGO) {
       this.definePosicao(Math.random() * (LARGURA_JOGO - 56), this.altura * (-1));
-    }else{
+    } else {
       this.definePosicao(this.x, this.y + this.velocidadeY);
     }
   }
 
-  checaColisao(objeto){
+  checaColisao(objeto) {
     let estaNaZonaY = false;
     let colisao = false;
 
-    if(this.y + this.altura >= objeto.y){
-      if(this.y <= objeto.y + objeto.altura){
+    if (this.y + this.altura >= objeto.y) {
+      if (this.y <= objeto.y + objeto.altura) {
         estaNaZonaY = true;
       }
     }
 
-    if(estaNaZonaY) {
-      if(this.x + this.largura >= objeto.x){
-        if(this.x < objeto.x + objeto.largura){
+    if (estaNaZonaY) {
+      if (this.x + this.largura >= objeto.x) {
+        if (this.x < objeto.x + objeto.largura) {
           colisao = true;
         }
       }
@@ -85,34 +86,34 @@ class Monstro extends Sprite {
 }
 
 class Feitico extends Sprite {
-  constructor(ctx, origem){
+  constructor(ctx, origem) {
     super(ctx, origem.x, origem.y, 5, 15, null, '#daa520');
 
     this.velocidadeY = -2;
     this.destruido = false;
   }
 
-  atualizaPosicao(){
-    if(this.y <= this.altura * (-1)){
+  atualizaPosicao() {
+    if (this.y <= this.altura * (-1)) {
       this.destruido = true;
-    }else{
+    } else {
       this.definePosicao(this.x, this.y + this.velocidadeY);
     }
   }
 
-  checaColisao(monstro){
+  checaColisao(monstro) {
     let estaNaZonaY = false;
     let colisao = false;
 
-    if(this.y + this.altura >= monstro.y){
-      if(this.y <= monstro.y + monstro.altura){
+    if (this.y + this.altura >= monstro.y) {
+      if (this.y <= monstro.y + monstro.altura) {
         estaNaZonaY = true;
       }
     }
 
-    if(estaNaZonaY) {
-      if(this.x + this.largura >= monstro.x){
-        if(this.x < monstro.x + monstro.largura){
+    if (estaNaZonaY) {
+      if (this.x + this.largura >= monstro.x) {
+        if (this.x < monstro.x + monstro.largura) {
           colisao = true;
         }
       }
