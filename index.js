@@ -1,13 +1,13 @@
 import { Sprite, Feitico, Monstro } from './js/classes.js';
 import { LARGURA_JOGO, ALTURA_JOGO } from './js/jogoConst.js';
+import AssetLoader from './js/assetLoader.js';
 
-//CONFIGURAÇÃO DO CANVAS
 let canvasEl = document.querySelector("#jogo");
 let ctx = canvasEl.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 
 
-//DEFINIÇÃO DE VARIÁVEIS
+//DEFINIÇÃO DE VARIÁVEIS DE PONTUAÇÃO
 let pontos = 0;
 let vida = {
   pontos: 200,
@@ -15,19 +15,18 @@ let vida = {
   barraAtual: new Sprite(ctx, 10, 10, 200, 10, null, '#00ff00')
 };
 
+/* let imagens = new AssetLoader();
+imagens.adicionar('imgBruxo', new Image(), '../assets/img/bruxo.png');
+imagens.adicionar('imgDementador', new Image(), '../assets/img/dementador.png');
+imagens.iniciaCarregamento(); */
+
+
+//CONFIGURAÇÃO DO CANVAS
 let chao = new Sprite(ctx, 0, 250, LARGURA_JOGO, ALTURA_JOGO, null, '#000030');
-let feiticos = [];
 let monstros = [new Monstro(ctx)];
-monstros[0].imagem.addEventListener("load", () => {
-  monstros[0].desenha();
-});
+let feiticos = [];
 let personagem = new Sprite(ctx, 276, 202, 49, 48, new Image(), '#000000');
 personagem.imagem.src = 'assets/img/bruxo.png';
-personagem.imagem.addEventListener("load", () => {
-  personagem.desenha();
-});
-
-
 
 //ESCUTANDO EVENTOS DE JOGO
 canvasEl.addEventListener("mousemove", (e) => {
@@ -81,10 +80,8 @@ function desenhaTela() {
   vida.barraTotal.desenha();
   vida.barraAtual.desenha();
   if (vida.pontos <= 0) {
-    clearInterval(loopJogoID);
+    clearInterval(gameLoopID);
   }
 }
 
-
-//INICIANDO O LOOP DE JOGO
-let loopJogoID = setInterval(desenhaTela, 17);
+let gameLoopID = setInterval(desenhaTela, 33);

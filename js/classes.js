@@ -1,8 +1,5 @@
 import { LARGURA_JOGO, ALTURA_JOGO } from './jogoConst.js';
 
-let imgMonstro = new Image();
-imgMonstro.src = '../assets/img/dementador.png';
-
 
 class Sprite {
   constructor(ctx, x, y, largura, altura, imagem, cor) {
@@ -48,11 +45,15 @@ class Monstro extends Sprite {
       -72,
       56,
       72,
-      imgMonstro,
+      new Image(),
       "#000000"
     );
 
     this.velocidadeY = 1;
+    this.imagem.src = '../assets/img/dementador.png';
+    this.imagem.addEventListener('load', () => {
+      this.desenha();
+    });
   }
 
   atualizaPosicao() {
