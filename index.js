@@ -17,6 +17,7 @@ let vida = {
   barraTotal: new Sprite(ctx, 10, 10, 200, 10, null, '#FF0000'),
   barraAtual: new Sprite(ctx, 10, 10, 200, 10, null, '#00ff00')
 };
+let qtdMonstros = 1;
 
 
 //CONFIGURAÇÃO DOS SPRITES
@@ -59,8 +60,14 @@ function desenhaTela() {
       if (feitico.checaColisao(monstro)) {
         feiticos.splice(indiceFeitico, 1);
         monstros.splice(indiceMonstro, 1);
-        monstros.push(new Monstro(ctx, imgMonstro));
         pontos += 25;
+
+        if (monstros.length === 0) {
+          qtdMonstros++;
+          for (let i = 0; i < qtdMonstros; i++) {
+            monstros.push(new Monstro(ctx, imgMonstro));
+          }
+        }
       }
 
       if (feitico.destruido) {
@@ -78,8 +85,25 @@ function desenhaTela() {
   vida.barraTotal.desenha();
   vida.barraAtual.desenha();
   if (vida.pontos <= 0) {
+    ctx.fillStyle = 'rgba(218, 165, 32, 0.7)';
+    ctx.fillRect(0, 0, LARGURA_JOGO, ALTURA_JOGO);
+
+    ctx.fillStyle = '#000000';
+    ctx.font = '50px monospace';
+    ctx.fillText('GAME OVER', 175, 130);
+
+    ctx.font = '20px monospace';
+    ctx.fillText('Recarregue a pagina', 195, 170);
+    ctx.fillText('para jogar novamente', 190, 190);
+
+    ctx.font = '20px monospace';
+    ctx.fillText('Sua pontuação:', 10, 245);
+
+    ctx.font = '30px monospace';
+    ctx.fillText(pontos, 10, 285);
+
     clearInterval(gameLoopID);
   }
 }
 
-let gameLoopID = setInterval(desenhaTela, 33);
+let gameLoopID = setInterval(desenhaTela, 17);

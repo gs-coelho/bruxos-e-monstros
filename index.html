@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
-      rel="stylesheet"
-    />
-    <title>Bruxos e Monstros</title>
-  </head>
-  <body>
-    <div class="containerTexto">
-      <h1>Olá!</h1>
-      <p>
-        Este jogo ainda está em construção. Enquanto isso, veja algumas das
-        imagens que serão utilizadas no jogo!
-      </p>
-      <p>Na esquerda está o monstro que tenta pegar o bruxo.</p>
-      <p>
-        Na direita, temos um exemplo de um feitiço que o nosso bruxo vai
-        utilizar para derrotar seus inimigos.
-      </p>
-      <p>
-        Em baixo, temos o bruxo! Mova o mouse para controlá-lo. (A função de
-        lançar feitiços ainda não foi implementada.)
-      </p>
-    </div>
-    <canvas id="jogo" width="600" height="300"></canvas>
-    <script src="index.js" type="module"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+  <title>Bruxos e Monstros</title>
+</head>
+
+<body>
+  <div class="containerTexto">
+    <h1>Seja bem vindo ao Bruxos e Monstros!</h1>
+    <p>
+      Este jogo é bem simples: mexa o mouse para controlar o bruxo na parte de baixo da tela. O seu objetivo é destruir
+      os monstros que vão descendo pela tela. Para isso, clique com o mouse para lançar um feitiço para cima!
+    </p>
+    <p>Quando um monstro chegar no chão, ele vai desaparecer e voltar para a parte de cima.
+      Mas não deixe o monstro encostar em você, pois isso diminui o seu HP!</p>
+    <p>
+      Se seu HP chegar a zero, você morre. Caso isso aconteca, é só recarregar a página (apertando o botão F5 do seu
+      teclado) para jogar novamente!
+    </p>
+    <p>
+      Alguns monstros podem se agrupar, e fica mais difícil saber quantos monstros estão juntos. Fique atento!
+      Quanto mais monstros você destruir, mais monstros vão aparecer. Quantos pontos você consegue fazer?
+    </p>
+  </div>
+  <canvas id="jogo" width="600" height="300"></canvas>
+  <script src="index.js" type="module"></script>
+</body>
+
 </html>
