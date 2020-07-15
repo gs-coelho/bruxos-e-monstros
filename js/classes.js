@@ -38,22 +38,19 @@ class Sprite {
 }
 
 class Monstro extends Sprite {
-  constructor(ctx) {
+  constructor(ctx, imagem) {
     super(
       ctx,
       Math.random() * (LARGURA_JOGO - 56),
       -72,
       56,
       72,
-      new Image(),
+      imagem,
       "#000000"
     );
 
+
     this.velocidadeY = 1;
-    this.imagem.src = '../assets/img/dementador.png';
-    this.imagem.addEventListener('load', () => {
-      this.desenha();
-    });
   }
 
   atualizaPosicao() {

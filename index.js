@@ -1,11 +1,14 @@
 import { Sprite, Feitico, Monstro } from './js/classes.js';
 import { LARGURA_JOGO, ALTURA_JOGO } from './js/jogoConst.js';
-import AssetLoader from './js/assetLoader.js';
 
+//CONFIGURAÇÃO DO CANVAS
 let canvasEl = document.querySelector("#jogo");
 let ctx = canvasEl.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 
+//CARREGANDO IMAGENS
+let imgMonstro = new Image();
+imgMonstro.src = './assets/img/dementador.png'
 
 //DEFINIÇÃO DE VARIÁVEIS DE PONTUAÇÃO
 let pontos = 0;
@@ -15,15 +18,10 @@ let vida = {
   barraAtual: new Sprite(ctx, 10, 10, 200, 10, null, '#00ff00')
 };
 
-/* let imagens = new AssetLoader();
-imagens.adicionar('imgBruxo', new Image(), '../assets/img/bruxo.png');
-imagens.adicionar('imgDementador', new Image(), '../assets/img/dementador.png');
-imagens.iniciaCarregamento(); */
 
-
-//CONFIGURAÇÃO DO CANVAS
+//CONFIGURAÇÃO DOS SPRITES
 let chao = new Sprite(ctx, 0, 250, LARGURA_JOGO, ALTURA_JOGO, null, '#000030');
-let monstros = [new Monstro(ctx)];
+let monstros = [new Monstro(ctx, imgMonstro)];
 let feiticos = [];
 let personagem = new Sprite(ctx, 276, 202, 49, 48, new Image(), '#000000');
 personagem.imagem.src = 'assets/img/bruxo.png';
@@ -49,7 +47,7 @@ function desenhaTela() {
 
     if (monstro.checaColisao(personagem)) {
       monstros.splice(indiceMonstro, 1);
-      monstros.push(new Monstro(ctx));
+      monstros.push(new Monstro(ctx, imgMonstro));
       vida.pontos -= 50;
       vida.barraAtual.largura = vida.pontos;
     }
@@ -61,7 +59,7 @@ function desenhaTela() {
       if (feitico.checaColisao(monstro)) {
         feiticos.splice(indiceFeitico, 1);
         monstros.splice(indiceMonstro, 1);
-        monstros.push(new Monstro(ctx));
+        monstros.push(new Monstro(ctx, imgMonstro));
         pontos += 25;
       }
 
