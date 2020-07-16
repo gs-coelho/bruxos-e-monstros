@@ -2,14 +2,19 @@ import { LARGURA_JOGO, ALTURA_JOGO } from './jogoConst.js';
 
 
 class Sprite {
-  constructor(ctx, x, y, largura, altura, imagem, cor) {
+  constructor(ctx, x, y, largura, altura, imagem, usaSpritesheet, cor) {
     this.ctx = ctx;
     this.x = x;
     this.y = y;
     this.largura = largura;
     this.altura = altura;
     this.imagem = imagem;
+    this.usaSpritesheet = usaSpritesheet;
     this.cor = cor;
+
+    if (this.usaSpritesheet) {
+      this.estadoAnimação = 0;
+    }
   }
 
   definePosicao(posX, posY) {
@@ -19,13 +24,34 @@ class Sprite {
 
   desenha() {
     if (this.imagem) {
-      this.ctx.drawImage(
-        this.imagem,
-        this.x,
-        this.y,
-        this.largura,
-        this.altura
-      );
+      if (this.usaSpritesheet) {
+        this.ctx.drawImage(
+          this.imagem,
+          Math.floor(
+            (this.estadoAnimação / 10) >= 3 ?
+              (this.estadoAnimação / 10) - 3 : (this.estadoAnimação / 10)
+          ) * 49,
+          0,
+          49,
+          50,
+          this.x,
+          this.y,
+          this.largura,
+          this.altura
+        );
+        this.estadoAnimação++;
+        if (this.estadoAnimação >= 60) {
+          this.estadoAnimação = 0;
+        }
+      } else {
+        this.ctx.drawImage(
+          this.imagem,
+          this.x,
+          this.y,
+          this.largura,
+          this.altura
+        );
+      }
     } else {
       this.ctx.fillStyle = this.cor;
       this.ctx.fillRect(this.x, this.y, this.largura, this.altura);
@@ -46,6 +72,7 @@ class Monstro extends Sprite {
       56,
       72,
       imagem,
+      false,
       "#000000"
     );
 
@@ -85,7 +112,7 @@ class Monstro extends Sprite {
 
 class Feitico extends Sprite {
   constructor(ctx, origem) {
-    super(ctx, origem.x, origem.y, 5, 15, null, '#daa520');
+    super(ctx, origem.x, origem.y, 5, 15, null, false, '#daa520');
 
     this.velocidadeY = -2;
     this.destruido = false;

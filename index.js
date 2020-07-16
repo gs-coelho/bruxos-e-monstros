@@ -14,22 +14,22 @@ imgMonstro.src = './assets/img/dementador.png'
 let pontos = 0;
 let vida = {
   pontos: 200,
-  barraTotal: new Sprite(ctx, 10, 10, 200, 10, null, '#FF0000'),
-  barraAtual: new Sprite(ctx, 10, 10, 200, 10, null, '#00ff00')
+  barraTotal: new Sprite(ctx, 10, 10, 200, 10, null, false, '#FF0000'),
+  barraAtual: new Sprite(ctx, 10, 10, 200, 10, null, false, '#00ff00')
 };
 let qtdMonstros = 1;
 
 
 //CONFIGURAÇÃO DOS SPRITES
-let chao = new Sprite(ctx, 0, 250, LARGURA_JOGO, ALTURA_JOGO, null, '#000030');
+let chao = new Sprite(ctx, 0, 250, LARGURA_JOGO, ALTURA_JOGO, null, false, '#000030');
 let monstros = [new Monstro(ctx, imgMonstro)];
 let feiticos = [];
-let personagem = new Sprite(ctx, 276, 202, 49, 48, new Image(), '#000000');
-personagem.imagem.src = 'assets/img/bruxo.png';
+let personagem = new Sprite(ctx, 276, 200, 49, 50, new Image(), true, '#000000');
+personagem.imagem.src = 'assets/img/bruxo-spritesheet.png';
 
 //ESCUTANDO EVENTOS DE JOGO
 canvasEl.addEventListener("mousemove", (e) => {
-  personagem.definePosicao(e.offsetX, 202);
+  personagem.definePosicao(e.offsetX, 200);
 });
 canvasEl.addEventListener("click", () => {
   feiticos.push(new Feitico(ctx, personagem));
