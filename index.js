@@ -1,5 +1,5 @@
-import { Sprite, Feitico, Monstro } from './js/classes.js';
-import { LARGURA_JOGO, ALTURA_JOGO } from './js/jogoConst.js';
+import { Sprite, Feitico, Monstro } from "./js/classes.js";
+import { LARGURA_JOGO, ALTURA_JOGO } from "./js/jogoConst.js";
 
 //CONFIGURAÇÃO DO CANVAS
 let canvasEl = document.querySelector("#jogo");
@@ -8,24 +8,41 @@ ctx.imageSmoothingEnabled = false;
 
 //CARREGANDO IMAGENS
 let imgMonstro = new Image();
-imgMonstro.src = './assets/img/dementador.png'
+imgMonstro.src = "./assets/img/dementador.png";
 
 //DEFINIÇÃO DE VARIÁVEIS DE PONTUAÇÃO
 let pontos = 0;
 let vida = {
   pontos: 200,
-  barraTotal: new Sprite(ctx, 10, 10, 200, 10, null, false, '#FF0000'),
-  barraAtual: new Sprite(ctx, 10, 10, 200, 10, null, false, '#00ff00')
+  barraTotal: new Sprite(ctx, 10, 10, 200, 10, null, false, "#FF0000"),
+  barraAtual: new Sprite(ctx, 10, 10, 200, 10, null, false, "#00ff00"),
 };
 let qtdMonstros = 1;
 
-
 //CONFIGURAÇÃO DOS SPRITES
-let chao = new Sprite(ctx, 0, 250, LARGURA_JOGO, ALTURA_JOGO, null, false, '#000030');
+let chao = new Sprite(
+  ctx,
+  0,
+  250,
+  LARGURA_JOGO,
+  ALTURA_JOGO,
+  null,
+  false,
+  "#000030"
+);
 let monstros = [new Monstro(ctx, imgMonstro)];
 let feiticos = [];
-let personagem = new Sprite(ctx, 276, 200, 49, 50, new Image(), true, '#000000');
-personagem.imagem.src = 'assets/img/bruxo-spritesheet.png';
+let personagem = new Sprite(
+  ctx,
+  276,
+  200,
+  49,
+  50,
+  new Image(),
+  true,
+  "#000000"
+);
+personagem.imagem.src = "assets/img/bruxo-spritesheet.png";
 
 //ESCUTANDO EVENTOS DE JOGO
 canvasEl.addEventListener("mousemove", (e) => {
@@ -34,7 +51,6 @@ canvasEl.addEventListener("mousemove", (e) => {
 canvasEl.addEventListener("click", () => {
   feiticos.push(new Feitico(ctx, personagem));
 });
-
 
 //DECLARANDO A FUNÇÃO PRINCIPAL
 function desenhaTela() {
@@ -77,29 +93,29 @@ function desenhaTela() {
   });
 
   chao.desenha(ctx);
-  ctx.font = '30px monospace';
-  ctx.fillStyle = '#FFFFFF';
+  ctx.font = "30px monospace";
+  ctx.fillStyle = "#FFFFFF";
   ctx.fillText(pontos, 10, 285);
-  ctx.font = '20px monospace';
-  ctx.fillText('HP', 12, 40);
+  ctx.font = "20px monospace";
+  ctx.fillText("HP", 12, 40);
   vida.barraTotal.desenha();
   vida.barraAtual.desenha();
   if (vida.pontos <= 0) {
-    ctx.fillStyle = 'rgba(218, 165, 32, 0.7)';
+    ctx.fillStyle = "rgba(218, 165, 32, 0.7)";
     ctx.fillRect(0, 0, LARGURA_JOGO, ALTURA_JOGO);
 
-    ctx.fillStyle = '#000000';
-    ctx.font = '50px monospace';
-    ctx.fillText('GAME OVER', 175, 130);
+    ctx.fillStyle = "#000000";
+    ctx.font = "50px monospace";
+    ctx.fillText("GAME OVER", 175, 130);
 
-    ctx.font = '20px monospace';
-    ctx.fillText('Recarregue a pagina', 195, 170);
-    ctx.fillText('para jogar novamente', 190, 190);
+    ctx.font = "20px monospace";
+    ctx.fillText("Recarregue a pagina", 195, 170);
+    ctx.fillText("para jogar novamente", 190, 190);
 
-    ctx.font = '20px monospace';
-    ctx.fillText('Sua pontuação:', 10, 245);
+    ctx.font = "20px monospace";
+    ctx.fillText("Sua pontuação:", 10, 245);
 
-    ctx.font = '30px monospace';
+    ctx.font = "30px monospace";
     ctx.fillText(pontos, 10, 285);
 
     clearInterval(gameLoopID);

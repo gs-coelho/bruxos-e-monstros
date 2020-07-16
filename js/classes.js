@@ -1,5 +1,4 @@
-import { LARGURA_JOGO, ALTURA_JOGO } from './jogoConst.js';
-
+import { LARGURA_JOGO, ALTURA_JOGO } from "./jogoConst.js";
 
 class Sprite {
   constructor(ctx, x, y, largura, altura, imagem, usaSpritesheet, cor) {
@@ -28,8 +27,9 @@ class Sprite {
         this.ctx.drawImage(
           this.imagem,
           Math.floor(
-            (this.estadoAnimação / 10) >= 3 ?
-              (this.estadoAnimação / 10) - 3 : (this.estadoAnimação / 10)
+            this.estadoAnimação / 10 >= 3
+              ? this.estadoAnimação / 10 - 3
+              : this.estadoAnimação / 10
           ) * 49,
           0,
           49,
@@ -76,13 +76,12 @@ class Monstro extends Sprite {
       "#000000"
     );
 
-
     this.velocidadeY = 1;
   }
 
   atualizaPosicao() {
     if (this.y > ALTURA_JOGO) {
-      this.definePosicao(Math.random() * (LARGURA_JOGO - 56), this.altura * (-1));
+      this.definePosicao(Math.random() * (LARGURA_JOGO - 56), this.altura * -1);
     } else {
       this.definePosicao(this.x, this.y + this.velocidadeY);
     }
@@ -112,14 +111,14 @@ class Monstro extends Sprite {
 
 class Feitico extends Sprite {
   constructor(ctx, origem) {
-    super(ctx, origem.x, origem.y, 5, 15, null, false, '#daa520');
+    super(ctx, origem.x, origem.y, 5, 15, null, false, "#daa520");
 
     this.velocidadeY = -2;
     this.destruido = false;
   }
 
   atualizaPosicao() {
-    if (this.y <= this.altura * (-1)) {
+    if (this.y <= this.altura * -1) {
       this.destruido = true;
     } else {
       this.definePosicao(this.x, this.y + this.velocidadeY);
